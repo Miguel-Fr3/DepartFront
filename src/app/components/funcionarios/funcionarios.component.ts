@@ -10,6 +10,8 @@ export class FuncionariosComponent implements OnInit {
 
   titulo = 'Funcionarios';
 
+  public funcionarioSelecionado!: string;
+
   public funcionarios: Funcionario[] = [
     {   id: 1,
       nome: 'Miguel',
@@ -28,10 +30,31 @@ export class FuncionariosComponent implements OnInit {
         id: 3,
         nome: 'Mariana',
         foto: 'https://picsum.photos/100/100',
-        rg: '456789123',
+        rg: '916782345',
         departamentoId: 3
-      }
+      },
+      {
+        id: 3,
+        nome: 'Lucas',
+        foto: 'https://picsum.photos/100/100',
+        rg: '456237891',
+        departamentoId: 4
+      },
+      {
+        id: 3,
+        nome: 'Luis',
+        foto: 'https://picsum.photos/100/100',
+        rg: '912345678',
+        departamentoId: 5
+      },
   ];
+
+  funcionarioSelect(Funcionario: any){
+    this.funcionarioSelecionado = Funcionario.nome;
+  }
+  voltar() {
+    this.funcionarioSelecionado = ''
+  }
 
   constructor() {}
 

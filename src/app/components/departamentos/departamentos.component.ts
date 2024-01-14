@@ -10,6 +10,8 @@ export class DepartamentosComponent implements OnInit {
 
   titulo = 'Departamentos';
 
+  public departamentoSelecionado!: string;
+
   public departamentos: Departamento[] = [
     { id: 1, nome: 'Inovação Tecnológica', sigla: 'IT' },
     { id: 2, nome: 'Recursos Humanos', sigla: 'RH' },
@@ -17,6 +19,13 @@ export class DepartamentosComponent implements OnInit {
     { id: 4, nome: 'Marketing', sigla: 'MK' },
     { id: 5, nome: 'Desenvolvimento de Software', sigla: 'DEV' },
   ];
+
+  departamentoSelect(Departamento: any){
+    this.departamentoSelecionado = Departamento.nome;
+  }
+  voltar() {
+    this.departamentoSelecionado = ''
+  }
 
   constructor() {}
 
