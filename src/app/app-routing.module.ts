@@ -5,9 +5,11 @@ import { FuncionariosComponent } from './components/funcionarios/funcionarios.co
 import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent},
   {path: 'departamentos', component: DepartamentosComponent},
-  {path: 'funcionarios', component: FuncionariosComponent},
-  {path: '', component: HomeComponent}
+  {path: 'funcionarios', component: FuncionariosComponent}
+
 ];
 
 @NgModule({
