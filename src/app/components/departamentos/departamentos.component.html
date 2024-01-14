@@ -1,22 +1,20 @@
 
 
 <div *ngIf="departamentoSelecionado">
-  <h1> Departamento selecionado: {{departamentoSelecionado}}</h1>
+  <h1> Departamento selecionado: {{departamentoSelecionado.nome}}</h1>
   <button (click)="voltar()">Voltar</button>
-  <form>
+  <form [formGroup]="departamentoForm"  (submit)="departamentoSubmit">
     <div>
-      <label for="">Nome</label>
-      <input type="text" class="Nome" >
+      <label for="nome">Nome</label>
+      <input type="text" formControlName="nome" class="Nome" >
     </div>
     <div>
-      <label for="">Id</label>
-      <input type="text" class="Id" >
+      <label for="sigla">Sigla</label>
+      <input type="text" formControlName="sigla" class="Sigla" >
     </div>
     <div>
-      <label for="">Sigla</label>
-      <input type="text" class="Sigla" >
+      <button class="btn-submit">Enviar</button>
     </div>
-
   </form>
 </div>
 <div *ngIf="!departamentoSelecionado">

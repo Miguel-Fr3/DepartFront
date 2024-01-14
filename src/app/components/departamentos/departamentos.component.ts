@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Departamento } from './departamento.model';
+import { Departamento } from '../../models/Departamento.model';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-departamentos',
@@ -8,9 +9,11 @@ import { Departamento } from './departamento.model';
 })
 export class DepartamentosComponent implements OnInit {
 
+  public departamentoForm!: FormGroup;
+
   titulo = 'Departamentos';
 
-  public departamentoSelecionado!: string;
+  public departamentoSelecionado: Departamento | null = null;
 
   public departamentos: Departamento[] = [
     { id: 1, nome: 'Inovação Tecnológica', sigla: 'IT' },
@@ -20,14 +23,32 @@ export class DepartamentosComponent implements OnInit {
     { id: 5, nome: 'Desenvolvimento de Software', sigla: 'DEV' },
   ];
 
-  departamentoSelect(Departamento: any){
-    this.departamentoSelecionado = Departamento.nome;
+  constructor(private fb: FormBuilder) {
+  this.criarForm();
   }
-  voltar() {
-    this.departamentoSelecionado = ''
-  }
-
-  constructor() {}
 
   ngOnInit() {}
+
+  criarForm(){
+    this.departamentoForm = this.fb.group({
+      nome: ['', Validators.required],
+      sigla: ['', Validators.required]
+    }
+    );
+  }
+
+  departamentoSelect(departamento: Departamento){
+    this.departamentoSelecionado = departamento;
+    this.departamentoForm.patchValue(departamento)
+  }
+
+  departamentoSubmit(){
+
+  }
+
+  voltar() {
+    this.departamentoSelecionado = null;
+  }
+
+
 }
