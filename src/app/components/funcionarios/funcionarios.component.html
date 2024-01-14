@@ -1,0 +1,14 @@
+<h1>{{ titulo }}</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome do Funcionário</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let funcionario of funcionarios">
+      <td>{{ funcionario.nome }}</td>
+    </tr>
+  </tbody>
+</table>
