@@ -3,12 +3,22 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Nome do Funcionário</th>
+      <th>Foto</th>
+      <th>RG</th>
+      <th>ID do Departamento</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let funcionario of funcionarios">
+      <td>{{ funcionario.id }}</td>
       <td>{{ funcionario.nome }}</td>
+      <td>
+        <img [src]="funcionario.foto" alt="Foto do Funcionário">
+      </td>
+      <td>{{ funcionario.rg }}</td>
+      <td>{{ funcionario.departamentoId }}</td>
     </tr>
   </tbody>
 </table>

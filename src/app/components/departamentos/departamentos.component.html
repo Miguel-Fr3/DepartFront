@@ -3,12 +3,16 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Nome do Departamento</th>
+      <th>Sigla</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let departamento of departamentos">
+      <td>{{ departamento.id }}</td>
       <td>{{ departamento.nome }}</td>
+      <td>{{ departamento.sigla }}</td>
     </tr>
   </tbody>
 </table>

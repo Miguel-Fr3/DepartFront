@@ -1,27 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { Departamento } from './departamento.model';
 
 @Component({
   selector: 'app-departamentos',
   templateUrl: './departamentos.component.html',
-  styleUrl: './departamentos.component.css'
+  styleUrls: ['./departamentos.component.css']
 })
-export class DepartamentosComponent implements OnInit{
+export class DepartamentosComponent implements OnInit {
 
-  titulo = 'Departamentos'
+  titulo = 'Departamentos';
 
-  public departamentos = [
-    { nome: 'Inovação Tecnológica' },
-    { nome: 'Recursos Humanos' },
-    { nome: 'Financeiro' },
-    { nome: 'Marketing' },
-    { nome: 'Desenvolvimento de Software' },
+  public departamentos: Departamento[] = [
+    { id: 1, nome: 'Inovação Tecnológica', sigla: 'IT' },
+    { id: 2, nome: 'Recursos Humanos', sigla: 'RH' },
+    { id: 3, nome: 'Financeiro', sigla: 'FIN' },
+    { id: 4, nome: 'Marketing', sigla: 'MK' },
+    { id: 5, nome: 'Desenvolvimento de Software', sigla: 'DEV' },
   ];
 
+  constructor() {}
 
-  constructor(){}
-
-  ngOnInit(){
-
-  }
-
+  ngOnInit() {}
 }
