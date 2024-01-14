@@ -1,8 +1,32 @@
 
 <div *ngIf="funcionarioSelecionado">
-  <h1> Departamento selecionado: {{funcionarioSelecionado}}</h1>
+  <h1> Funcionario selecionado: {{funcionarioSelecionado}}</h1>
   <br>
   <button (click)="voltar()">Voltar</button>
+
+  <form>
+    <div>
+      <label for="">Nome</label>
+      <input type="text" class="Nome" >
+    </div>
+    <div>
+      <label for="">Id</label>
+      <input type="text" class="Id" >
+    </div>
+    <div>
+      <label for="">Foto</label>
+      <input type="text" class="Foto" >
+    </div>
+    <div>
+      <label for="">Rg</label>
+      <input type="text" class="Rg" >
+    </div>
+    <div>
+      <label for="">ID do Departamento</label>
+      <input type="text" class="ID do Departamento" >
+    </div>
+
+  </form>
 </div>
 <div *ngIf="!funcionarioSelecionado">
   <h1>{{ titulo }}</h1>

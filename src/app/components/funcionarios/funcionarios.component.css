@@ -58,3 +58,24 @@ button {
 button:hover {
   background-color: #3349ab;
 }
+
+form {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+}
+
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  box-sizing: border-box;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}

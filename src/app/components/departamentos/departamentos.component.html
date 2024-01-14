@@ -2,8 +2,22 @@
 
 <div *ngIf="departamentoSelecionado">
   <h1> Departamento selecionado: {{departamentoSelecionado}}</h1>
-  <br>
   <button (click)="voltar()">Voltar</button>
+  <form>
+    <div>
+      <label for="">Nome</label>
+      <input type="text" class="Nome" >
+    </div>
+    <div>
+      <label for="">Id</label>
+      <input type="text" class="Id" >
+    </div>
+    <div>
+      <label for="">Sigla</label>
+      <input type="text" class="Sigla" >
+    </div>
+
+  </form>
 </div>
 <div *ngIf="!departamentoSelecionado">
   <h1>{{ titulo }}</h1>
