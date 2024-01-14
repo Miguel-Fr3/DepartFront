@@ -4,11 +4,22 @@ h1{
   font-size: 3rem;
   text-align: center;
 }
+div{
+  text-align: left;
+  font-size: 1.2rem;
+  margin-left: 1rem;
+  font-weight: bolder;
+}
+.tabela{
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
 table {
-  width: 80%;
-  margin: 20px auto;
+  width: 800px;
   border-collapse: collapse;
-  margin-bottom: 5rem;
 }
 
 th{
@@ -26,4 +37,24 @@ td{
 
 th {
   background-color: #f2f2f2;
+}
+td:hover{
+  background-color: #ebebeb;
+  cursor: pointer;
+}
+
+
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  background-color: #4668ff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #3349ab;
 }

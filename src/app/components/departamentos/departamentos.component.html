@@ -1,14 +1,30 @@
-<h1>{{ titulo }}</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nome do Departamento</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let departamento of departamentos">
-      <td>{{ departamento.nome }}</td>
-    </tr>
-  </tbody>
-</table>
+
+<div *ngIf="departamentoSelecionado">
+  <h1> Departamento selecionado: {{departamentoSelecionado}}</h1>
+  <br>
+  <button (click)="voltar()">Voltar</button>
+</div>
+<div *ngIf="!departamentoSelecionado">
+  <h1>{{ titulo }}</h1>
+  Nenhum Selecionado
+  <div class="tabela">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome do Departamento</th>
+          <th>Sigla</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let departamento of departamentos" (click)="departamentoSelect(departamento)">
+          <td>{{ departamento.id }}</td>
+          <td>{{ departamento.nome }}</td>
+          <td>{{ departamento.sigla }}</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+</div>
+

@@ -1,52 +1,62 @@
 import { Component, OnInit } from '@angular/core';
+import { Funcionario } from './funcionario.models';
 
 @Component({
   selector: 'app-funcionarios',
   templateUrl: './funcionarios.component.html',
-  styleUrl: './funcionarios.component.css'
+  styleUrls: ['./funcionarios.component.css']
 })
-export class FuncionariosComponent  implements OnInit{
+export class FuncionariosComponent implements OnInit {
 
-  titulo = 'Funcionarios'
+  titulo = 'Funcionarios';
 
-  public funcionarios = [
-    {nome: ' Miguel '},
-    {nome: ' Heloisa '},
-    {nome: ' Mariana '},
-    {nome: ' Lucas '},
-    {nome: ' Tatiane '},
-    {nome: ' Roberto '},
-    {nome: ' Luis '},
-    {nome: ' Pedro '},
-    {nome: ' Paulo '},
-    { nome: 'Gabriel' },
-    { nome: 'Larissa' },
-    { nome: 'Fernando' },
-    { nome: 'Camila' },
-    { nome: 'Vinícius' },
-    { nome: 'Juliana' },
-    { nome: 'Alexandre' },
-    { nome: 'Mariana' },
-    { nome: 'Renato' },
-    { nome: 'Carolina' },
-    { nome: 'Laura' },
-    { nome: 'Guilherme' },
-    { nome: 'Thais' },
-    { nome: 'Rodrigo' },
-    { nome: 'Amanda' },
-    { nome: 'Diego' },
-    { nome: 'Fernanda' },
-    { nome: 'Bruno' },
-    { nome: 'Patrícia' },
+  public funcionarioSelecionado!: string;
+
+  public funcionarios: Funcionario[] = [
+    {   id: 1,
+      nome: 'Miguel',
+      foto: 'https://picsum.photos/100/100',
+      rg: '987654321',
+      departamentoId: 1
+    },
+    {
+        id: 2,
+        nome: 'Heloisa',
+        foto: 'https://picsum.photos/100/100',
+        rg: '123456789',
+        departamentoId: 2
+      },
+      {
+        id: 3,
+        nome: 'Mariana',
+        foto: 'https://picsum.photos/100/100',
+        rg: '916782345',
+        departamentoId: 3
+      },
+      {
+        id: 3,
+        nome: 'Lucas',
+        foto: 'https://picsum.photos/100/100',
+        rg: '456237891',
+        departamentoId: 4
+      },
+      {
+        id: 3,
+        nome: 'Luis',
+        foto: 'https://picsum.photos/100/100',
+        rg: '912345678',
+        departamentoId: 5
+      },
   ];
 
-
-
-
-  constructor(){}
-
-  ngOnInit(){
-
+  funcionarioSelect(Funcionario: any){
+    this.funcionarioSelecionado = Funcionario.nome;
+  }
+  voltar() {
+    this.funcionarioSelecionado = ''
   }
 
+  constructor() {}
+
+  ngOnInit() {}
 }

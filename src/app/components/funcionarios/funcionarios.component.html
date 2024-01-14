@@ -1,14 +1,35 @@
-<h1>{{ titulo }}</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nome do Funcionário</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let funcionario of funcionarios">
-      <td>{{ funcionario.nome }}</td>
-    </tr>
-  </tbody>
-</table>
+<div *ngIf="funcionarioSelecionado">
+  <h1> Departamento selecionado: {{funcionarioSelecionado}}</h1>
+  <br>
+  <button (click)="voltar()">Voltar</button>
+</div>
+<div *ngIf="!funcionarioSelecionado">
+  <h1>{{ titulo }}</h1>
+  Nenhum Selecionado
+  <div class="tabela">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome do Funcionário</th>
+          <th>Foto</th>
+          <th>RG</th>
+          <th>ID do Departamento</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let funcionario of funcionarios" (click)="funcionarioSelect(funcionario)">
+          <td>{{ funcionario.id }}</td>
+          <td>{{ funcionario.nome }}</td>
+          <td>
+            <img [src]="funcionario.foto" alt="Foto do Funcionário">
+          </td>
+          <td>{{ funcionario.rg }}</td>
+          <td>{{ funcionario.departamentoId }}</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+</div>
+
