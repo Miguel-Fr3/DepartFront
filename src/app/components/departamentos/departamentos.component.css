@@ -38,10 +38,7 @@ td{
 th {
   background-color: #f2f2f2;
 }
-td:hover{
-  background-color: #ebebeb;
-  cursor: pointer;
-}
+
 
 
 button {
@@ -53,6 +50,7 @@ button {
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 button:hover {
@@ -94,4 +92,47 @@ label {
 
 .btn-submit:hover {
   background-color: #0f9763;
+}
+.btn-detal {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  background-color: #ffffff;
+  color: #000;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.btn-detal:hover {
+  background-color: #000000;
+  color: #fbfbfb;
+}
+.btn-edit {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  background-color: #0074e0;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.btn-edit:hover {
+  background-color: #0057a8;
+}
+.btn-delete {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  background-color: #d80000;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.btn-delete:hover {
+  background-color: #940000;
 }

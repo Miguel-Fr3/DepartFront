@@ -21,7 +21,7 @@ export class FuncionariosComponent implements OnInit {
       nome: 'Miguel',
       foto: 'https://picsum.photos/100/100',
       rg: '987654321',
-      departamentoId: 1
+      departamentoId: 5
     },
     {
       id: 2,
@@ -35,21 +35,21 @@ export class FuncionariosComponent implements OnInit {
       nome: 'Mariana',
       foto: 'https://picsum.photos/100/100',
       rg: '916782345',
-      departamentoId: 3
+      departamentoId: 4
     },
     {
       id: 4,
       nome: 'Lucas',
       foto: 'https://picsum.photos/100/100',
       rg: '456237891',
-      departamentoId: 4
+      departamentoId: 3
     },
     {
       id: 5,
       nome: 'Luis',
       foto: 'https://picsum.photos/100/100',
       rg: '912345678',
-      departamentoId: 5
+      departamentoId: 1
     },
   ];
 

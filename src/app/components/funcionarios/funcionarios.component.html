@@ -38,10 +38,11 @@
           <th>Foto</th>
           <th>RG</th>
           <th>ID do Departamento</th>
+          <th>Opções</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let funcionario of funcionarios" (click)="funcionarioSelect(funcionario)">
+        <tr *ngFor="let funcionario of funcionarios">
           <td>{{ funcionario.id }}</td>
           <td>{{ funcionario.nome }}</td>
           <td>
@@ -49,6 +50,13 @@
           </td>
           <td>{{ funcionario.rg }}</td>
           <td>{{ funcionario.departamentoId }}</td>
+          <td>
+            <div class="btn-group">
+              <button class="btn-detal" (click)="funcionarioSelect(funcionario)">Editar</button>
+              <button class="btn-edit">Departamento</button>
+              <button class="btn-delete">Excluir</button>
+            </div>
+          </td>
         </tr>
       </tbody>
     </table>
