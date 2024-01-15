@@ -78,6 +78,11 @@ label {
   margin-bottom: 5px;
 }
 
+.btn-group {
+  display: flex;
+  gap: 10px;
+  }
+
 
 .btn-submit {
   display: inline-block;

@@ -46,8 +46,8 @@ a {
 }
 
 a:hover {
-  color: #000000;
-  background-color: #00BFFF;
+  color: #fbfbfb;
+  background-color: #1e41dbf8;
   border-radius: 1rem;
 }
 
