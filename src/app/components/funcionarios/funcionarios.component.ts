@@ -78,6 +78,7 @@ export class FuncionariosComponent implements OnInit {
     }
 
 
+
   voltar() {
     this.funcionarioSelecionado = null;
   }
