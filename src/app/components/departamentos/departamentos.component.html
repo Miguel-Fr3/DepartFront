@@ -1,9 +1,21 @@
 
 
 <div *ngIf="departamentoSelecionado">
-  <h1> Departamento selecionado: {{departamentoSelecionado}}</h1>
-  <br>
+  <h1> Departamento selecionado: {{departamentoSelecionado.nome}}</h1>
   <button (click)="voltar()">Voltar</button>
+  <form [formGroup]="departamentoForm"  (submit)="departamentoSubmit">
+    <div>
+      <label for="nome">Nome</label>
+      <input type="text" formControlName="nome" class="Nome" >
+    </div>
+    <div>
+      <label for="sigla">Sigla</label>
+      <input type="text" formControlName="sigla" class="Sigla" >
+    </div>
+    <div>
+      <button class="btn-submit">Enviar</button>
+    </div>
+  </form>
 </div>
 <div *ngIf="!departamentoSelecionado">
   <h1>{{ titulo }}</h1>
@@ -15,16 +27,49 @@
           <th>ID</th>
           <th>Nome do Departamento</th>
           <th>Sigla</th>
+          <th>Opções</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let departamento of departamentos" (click)="departamentoSelect(departamento)">
+        <tr *ngFor="let departamento of departamentos">
           <td>{{ departamento.id }}</td>
           <td>{{ departamento.nome }}</td>
           <td>{{ departamento.sigla }}</td>
+          <td>
+            <div class="btn-group">
+              <button (click)="departamentoSelect(departamento)" class="btn-edit">Editar</button>
+              <button class="btn-detal" (click)="openModal(func)">Funcionarios</button>
+              <button class="btn-delete">Excluir</button>
+            </div>
+          </td>
         </tr>
       </tbody>
     </table>
     </div>
 </div>
 
+
+<ng-template #func>
+  <div class="modal-body">
+   onde tem q estar o funcionario com o id
+   onde tem q estar o funcionario com o id
+   onde tem q estar o funcionario com o id
+   onde tem q estar o funcionario com o id
+   onde tem q estar o funcionario com o id
+   onde tem q estar o funcionario com o id
+   onde tem q estar o funcionario com o id
+   onde tem q estar o funcionario com o id
+   onde tem q estar o funcionario com o id
+   onde tem q estar o funcionario com o id
+   onde tem q estar o funcionario com o id
+   onde tem q estar o funcionario com o id
+   onde tem q estar o funcionario com o id
+   onde tem q estar o funcionario com o id
+   onde tem q estar o funcionario com o id
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      Fechar
+    </button>
+  </div>
+</ng-template>

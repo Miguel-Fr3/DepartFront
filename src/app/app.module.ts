@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { DepartamentosComponent } from './components/departamentos/departamentos.component';
 import { FuncionariosComponent } from './components/funcionarios/funcionarios.component';
 import { HomeComponent } from './components/home/home.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { ModalModule } from 'ngx-bootstrap/modal';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +17,9 @@ import { HomeComponent } from './components/home/home.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    ModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
