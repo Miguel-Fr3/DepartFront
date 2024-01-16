@@ -1,5 +1,6 @@
+import { FuncionarioService } from './funcionario.service';
+import { Funcionario } from './../../models/Funcionario.models';
 import { Component, OnInit } from '@angular/core';
-import { Funcionario } from '../../models/Funcionario.models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -11,60 +12,38 @@ export class FuncionariosComponent implements OnInit {
 
   public funcionarioForm!: FormGroup;
 
-  titulo = 'Funcionarios';
+  titulo = 'Funcionários';
 
   public funcionarioSelecionado: Funcionario | null = null;
 
-  public funcionarios: Funcionario[] = [
-    {
-      id: 1,
-      nome: 'Miguel',
-      foto: 'https://picsum.photos/100/100',
-      rg: '987654321',
-      departamentoId: 5
-    },
-    {
-      id: 2,
-      nome: 'Heloisa',
-      foto: 'https://picsum.photos/100/100',
-      rg: '123456789',
-      departamentoId: 2
-    },
-    {
-      id: 3,
-      nome: 'Mariana',
-      foto: 'https://picsum.photos/100/100',
-      rg: '916782345',
-      departamentoId: 4
-    },
-    {
-      id: 4,
-      nome: 'Lucas',
-      foto: 'https://picsum.photos/100/100',
-      rg: '456237891',
-      departamentoId: 3
-    },
-    {
-      id: 5,
-      nome: 'Luis',
-      foto: 'https://picsum.photos/100/100',
-      rg: '912345678',
-      departamentoId: 1
-    },
-  ];
+  public funcionarios!: Funcionario[]
 
-  funcionarioSelect(funcionario: Funcionario){
+  funcionarioSelect(funcionario: Funcionario ){
     this.funcionarioSelecionado = funcionario;
     this.funcionarioForm.patchValue(funcionario)
   }
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private funcionarioService: FuncionarioService) {
     this.criarForm();
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+      this.carregarFuncionarios();
+    }
+
+    carregarFuncionarios(){
+      this.funcionarioService.getAll().subscribe(
+        (funcionarios: Funcionario[]) => {
+          this.funcionarios = funcionarios;
+        },
+        (erro: any) => {
+          console.error(erro);
+        }
+      );
+    }
 
     criarForm(){
       this.funcionarioForm = this.fb.group({
+        id: [''],
         nome: ['', Validators.required],
         foto: ['', Validators.required],
         rg: ['', Validators.required],
@@ -74,10 +53,23 @@ export class FuncionariosComponent implements OnInit {
     }
 
     funcionarioSubmit(){
-
+      this.salvarFuncionario(this.funcionarioForm.value);
     }
 
 
+
+
+    salvarFuncionario(funcionario: Funcionario) {
+    this.funcionarioService.put(funcionario.id, funcionario).subscribe(
+      (retorno: Funcionario) => {
+        console.log('Funcionario salvo com sucesso:', retorno);
+        this.carregarFuncionarios();
+      },
+      (erro: any) => {
+        console.error('Erro ao salvar departamento:', erro);
+      }
+    );
+  }
 
   voltar() {
     this.funcionarioSelecionado = null;

@@ -1,29 +1,32 @@
 
 <div *ngIf="funcionarioSelecionado">
-  <h1> Funcionario selecionado: {{funcionarioSelecionado.nome}}</h1>
+  <h1> Funcionário selecionado: {{funcionarioSelecionado.nome}}</h1>
   <br>
   <button (click)="voltar()">Voltar</button>
 
-  <form [formGroup]="funcionarioForm"  (submit)="funcionarioSubmit">
+  <form [formGroup]="funcionarioForm"  (submit)="funcionarioSubmit()">
     <div>
-      <label for="nome">Nome</label>
-      <input type="text" formControlName="nome" class="Nome" >
+      <label for="nome">Nome do Funcionário</label>
+      <input type="text" formControlName="nome" id="nome" class="Nome" >
     </div>
     <div>
       <label for="foto">Foto</label>
-      <input type="text" formControlName="foto" class="Foto" >
+      <input type="text" formControlName="foto" id="foto" class="Foto" >
     </div>
     <div>
-      <label for="rg">Rg</label>
-      <input type="text" formControlName="rg" class="Rg" >
+      <label for="rg">RG</label>
+      <input type="text" formControlName="rg" id="rg" class="Rg" >
     </div>
     <div>
       <label for="departamentoId">ID do Departamento</label>
-      <input type="text" formControlName="departamentoId" class="ID do Departamento" >
+      <input type="text" formControlName="departamentoId" id="departamentoId" class="IDdoDepartamento" >
     </div>
     <div>
-      <button class="btn-submit">Enviar</button>
+      <button class="btn-submit" [disabled]="!funcionarioForm.valid">Enviar</button>
     </div>
+
+
+
   </form>
 </div>
 <div *ngIf="!funcionarioSelecionado">
@@ -53,7 +56,6 @@
           <td>
             <div class="btn-group">
               <button class="btn-detal" (click)="funcionarioSelect(funcionario)">Editar</button>
-              <button class="btn-edit">Departamento</button>
               <button class="btn-delete">Excluir</button>
             </div>
           </td>
