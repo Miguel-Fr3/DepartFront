@@ -1,9 +1,9 @@
-import { Departamento } from './../../models/Departamento.model';
+import { Departamentos } from './../../models/Departamento.model';
 import { departamentoService } from './departamento.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { Funcionario } from '../../models/Funcionario.models';
+import { Funcionarios } from '../../models/Funcionario.models';
 
 @Component({
   selector: 'app-departamentos',
@@ -15,9 +15,9 @@ export class DepartamentosComponent implements OnInit {
   public modalRef?: BsModalRef;
   public departamentoForm!: FormGroup;
   public titulo = 'Departamentos';
-  public departamentoSelecionado: Departamento | null = null;
+  public departamentoSelecionado: Departamentos | null = null;
   public modo!: string;
-  public departamentos!: Departamento[];
+  public departamentos!: Departamentos[];
   public mostrarFormularioCadastro = false;
   departamentoId: number | undefined;
 
@@ -48,7 +48,7 @@ export class DepartamentosComponent implements OnInit {
 
   carregarDepartamentos() {
     this.departamentoService.getAll().subscribe(
-      (departamentos: Departamento[]) => {
+      (departamentos: Departamentos[]) => {
         this.departamentos = departamentos;
       },
       (erro: any) => {
@@ -65,10 +65,10 @@ export class DepartamentosComponent implements OnInit {
     this.mostrarFormularioCadastro = false;
   }
 
-  salvarDepartamento(departamento: Departamento) {
+  salvarDepartamento(departamento: Departamentos) {
 
     this.departamentoService.put(departamento.id, departamento).subscribe(
-      (retorno: Departamento) => {
+      (retorno: Departamentos) => {
         console.log('Departamento salvo com sucesso:', retorno);
         this.carregarDepartamentos();
       },
@@ -78,7 +78,7 @@ export class DepartamentosComponent implements OnInit {
     );
   }
 
-  departamentoSelect(departamento: Departamento) {
+  departamentoSelect(departamento: Departamentos) {
     this.departamentoForm.patchValue(departamento);
     this.departamentoSelecionado = departamento;
 
@@ -100,9 +100,9 @@ export class DepartamentosComponent implements OnInit {
     }
   }
 
-  departamentoCadastro(departamento: Departamento) {
+  departamentoCadastro(departamento: Departamentos) {
     this.departamentoService.post(departamento).subscribe(
-      (retorno: Departamento) => {
+      (retorno: Departamentos) => {
         console.log('Departamento salvo com sucesso:', retorno);
         this.carregarDepartamentos();
         this.mostrarFormularioCadastro = false;

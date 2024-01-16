@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Funcionario } from '../../models/Funcionario.models';
+import { Funcionarios } from '../../models/Funcionario.models';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -14,8 +14,8 @@ export class FuncionariosDepartamentoService {
   constructor(private http: HttpClient) { }
 
 
-  getFuncionariosByDepartamentoId(departamentoId: number): Observable<Funcionario[]> {
-    const url = `${this.apiUrl}/departamento/${departamentoId}/funcionarios`;
-    return this.http.get<Funcionario[]>(url);
+  getFuncionariosByDepartamentoId(departamentoId: number): Observable<Funcionarios[]> {
+    const url = `${this.apiUrl}/Departamentos/${departamentoId}/Funcionarios`;
+    return this.http.get<Funcionarios[]>(url);
   }
 }

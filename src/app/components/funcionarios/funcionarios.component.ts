@@ -1,5 +1,5 @@
 import { FuncionarioService } from './funcionario.service';
-import { Funcionario } from './../../models/Funcionario.models';
+import { Funcionarios } from './../../models/Funcionario.models';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -13,8 +13,8 @@ export class FuncionariosComponent implements OnInit {
   public funcionarioForm!: FormGroup;
   public mostrarFormularioCadastro = false;
   titulo = 'Funcionários';
-  public funcionarioSelecionado: Funcionario | null = null;
-  public funcionarios!: Funcionario[]
+  public funcionarioSelecionado: Funcionarios | null = null;
+  public funcionarios!: Funcionarios[]
 
   constructor(private fb: FormBuilder, private funcionarioService: FuncionarioService) {
     this.criarForm();
@@ -35,14 +35,14 @@ export class FuncionariosComponent implements OnInit {
       );
     }
 
-    funcionarioSelect(funcionario: Funcionario ){
+    funcionarioSelect(funcionario: Funcionarios ){
       this.funcionarioSelecionado = funcionario;
       this.funcionarioForm.patchValue(funcionario)
     }
 
     carregarFuncionarios(){
       this.funcionarioService.getAll().subscribe(
-        (funcionarios: Funcionario[]) => {
+        (funcionarios: Funcionarios[]) => {
           this.funcionarios = funcionarios;
         },
         (erro: any) => {
@@ -62,9 +62,9 @@ export class FuncionariosComponent implements OnInit {
 
 
 
-    salvarFuncionario(funcionario: Funcionario) {
+    salvarFuncionario(funcionario: Funcionarios) {
     this.funcionarioService.put(funcionario.id, funcionario).subscribe(
-      (retorno: Funcionario) => {
+      (retorno: Funcionarios) => {
         console.log('Funcionario salvo com sucesso:', retorno);
         this.carregarFuncionarios();
       },
@@ -91,9 +91,9 @@ export class FuncionariosComponent implements OnInit {
     }
   }
 
-  funcionarioCadastro(funcionario: Funcionario) {
+  funcionarioCadastro(funcionario: Funcionarios) {
     this.funcionarioService.post(funcionario).subscribe(
-      (retorno: Funcionario) => {
+      (retorno: Funcionarios) => {
         console.log('Funcionario salvo com sucesso:', retorno);
         this.carregarFuncionarios();
         this.mostrarFormularioCadastro = false;

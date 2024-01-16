@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Funcionario } from '../../models/Funcionario.models';
+import { Funcionarios } from '../../models/Funcionario.models';
 import { FuncionariosDepartamentoService } from './funcionarios-departamento.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { FuncionariosDepartamentoService } from './funcionarios-departamento.ser
 export class FuncionariosDepartamentoComponent implements OnInit {
   @Input() departamentoId?: number;
 
-  public funcionariosDoDepartamento: Funcionario[] = [];
+  public funcionariosDoDepartamento: Funcionarios[] = [];
 
   constructor(private funcionariosDepartamentoService: FuncionariosDepartamentoService) {}
 
@@ -21,7 +21,7 @@ export class FuncionariosDepartamentoComponent implements OnInit {
   carregarFuncionariosPorDepartamentoId(departamentoId: number | undefined) {
     if (departamentoId !== undefined && departamentoId !== null) {
       this.funcionariosDepartamentoService.getFuncionariosByDepartamentoId(departamentoId).subscribe(
-        (funcionarios: Funcionario[]) => {
+        (funcionarios: Funcionarios[]) => {
           this.funcionariosDoDepartamento = funcionarios;
         },
         (erro: any) => {
