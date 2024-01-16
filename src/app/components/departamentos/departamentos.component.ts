@@ -110,6 +110,18 @@ export class DepartamentosComponent implements OnInit {
     );
   }
 
+  excluir(id: number){
+    this.DepartamentoService.delete(id).subscribe(
+      (model: any)=>{
+        console.log(model);
+        this.carregarDepartamentos();
+      },
+      (erro: any)=>{
+        console.error(erro)
+      }
+    )
+  }
+
   voltar() {
     this.departamentoSelecionado = null;
     this.departamentoForm.reset();

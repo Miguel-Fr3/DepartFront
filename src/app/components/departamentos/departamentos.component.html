@@ -50,7 +50,7 @@
             <div class="btn-group">
               <button (click)="departamentoSelect(departamento)" class="btn-edit">Editar</button>
               <button class="btn-detal" (click)="openModal(func)">Funcionarios</button>
-              <button class="btn-delete">Excluir</button>
+              <button class="btn-delete" (click)="excluir(departamento.id)">Excluir</button>
             </div>
           </td>
         </tr>

@@ -104,6 +104,20 @@ export class FuncionariosComponent implements OnInit {
     );
   }
 
+
+  excluir(id: number){
+    this.funcionarioService.delete(id).subscribe(
+      (model: any)=>{
+        console.log(model)
+        this.carregarFuncionarios();
+      },
+      (erro: any)=>{
+        console.error(erro)
+      }
+    )
+  }
+
+
   voltar() {
     this.funcionarioSelecionado = null;
     this.funcionarioForm.reset();
