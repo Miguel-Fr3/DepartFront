@@ -15,8 +15,8 @@ export class DepartamentosComponent implements OnInit {
   public departamentoForm!: FormGroup;
   public titulo = 'Departamentos';
   public departamentoSelecionado: Departamento | null = null;
-
-  public departamentos!: Departamento[]
+  public modo!: string;
+  public departamentos!: Departamento[];
 
   constructor(private fb: FormBuilder, private modalService: BsModalService, private DepartamentoService: DepartamentoService) {
     this.criarForm();
@@ -26,7 +26,7 @@ export class DepartamentosComponent implements OnInit {
     this.carregarDepartamentos();
   }
 
-  carregarDepartamentos(){
+  carregarDepartamentos() {
     this.DepartamentoService.getAll().subscribe(
       (departamentos: Departamento[]) => {
         this.departamentos = departamentos;
@@ -44,23 +44,27 @@ export class DepartamentosComponent implements OnInit {
       sigla: ['', Validators.required]
     });
   }
+
   departamentoSubmit() {
-
     this.salvarDepartamento(this.departamentoForm.value);
-
+    this.departamentoSelecionado = null;
+    this.departamentoForm.reset();
+    this.mostrarFormularioCadastro = false;
   }
 
   salvarDepartamento(departamento: Departamento) {
-    this.DepartamentoService.put(departamento.id, departamento).subscribe(
-      (retorno: Departamento) => {
-        console.log('Departamento salvo com sucesso:', retorno);
-        this.carregarDepartamentos();
-      },
-      (erro: any) => {
-        console.error('Erro ao salvar departamento:', erro);
-      }
-    );
-  }
+
+      this.DepartamentoService.put(departamento.id, departamento).subscribe(
+        (retorno: Departamento) => {
+          console.log('Departamento salvo com sucesso:', retorno);
+          this.carregarDepartamentos();
+        },
+        (erro: any) => {
+          console.error('Erro ao salvar departamento:', erro);
+        }
+      );
+    }
+
 
   openModal(template: TemplateRef<void>) {
     this.modalRef = this.modalService.show(template);
@@ -75,9 +79,40 @@ export class DepartamentosComponent implements OnInit {
     this.departamentoForm.patchValue(departamento);
   }
 
+  public mostrarFormularioCadastro = false;
 
+  departamentoNovo() {
+    this.departamentoSelecionado = null;
+    this.departamentoForm.reset();
+    this.mostrarFormularioCadastro = true;
+  }
+
+  cadastrar() {
+    if (this.departamentoForm.valid) {
+      const dadosFormulario = this.departamentoForm.value;
+
+      delete dadosFormulario.id;
+
+      this.departamentoCadastro(dadosFormulario);
+    }
+  }
+
+  departamentoCadastro(departamento: Departamento) {
+    this.DepartamentoService.post(departamento).subscribe(
+      (retorno: Departamento) => {
+        console.log('Departamento salvo com sucesso:', retorno);
+        this.carregarDepartamentos();
+        this.mostrarFormularioCadastro = false;
+      },
+      (erro: any) => {
+        console.error('Erro ao salvar departamento:', erro);
+      }
+    );
+  }
 
   voltar() {
     this.departamentoSelecionado = null;
+    this.departamentoForm.reset();
+    this.mostrarFormularioCadastro = false;
   }
 }

@@ -29,12 +29,11 @@
 
   </form>
 </div>
-<div *ngIf="!funcionarioSelecionado">
+<div *ngIf="!mostrarFormularioCadastro && !funcionarioSelecionado">
   <h1>{{ titulo }}</h1>
-  Nenhum Selecionado
   <div class="tabela">
     <div class="add">
-      <button class="btn-submit">Adicionar</button>
+      <button class="btn-submit" (click)="funcionarioNovo()">Adicionar</button>
     </div>
     <table>
       <thead>
@@ -68,3 +67,31 @@
     </div>
 </div>
 
+
+
+
+<div *ngIf="mostrarFormularioCadastro">
+  <h1>Cadastrar Novo Funcionário</h1>
+  <br>
+  <button (click)="voltar()">Voltar</button>
+
+  <form [formGroup]="funcionarioForm"  (submit)="cadastrar()">
+    <div>
+      <label for="nome">Nome do Funcionário</label>
+      <input type="text" formControlName="nome" id="nome" class="Nome" >
+    </div>
+    <div>
+      <label for="foto">Foto</label>
+      <input type="text" formControlName="foto" id="foto" class="Foto" >
+    </div>
+    <div>
+      <label for="rg">RG</label>
+      <input type="text" formControlName="rg" id="rg" class="Rg" >
+    </div>
+    <div>
+      <label for="departamentoId">ID do Departamento</label>
+      <input type="text" formControlName="departamentoId" id="departamentoId" class="IDdoDepartamento" >
+    </div>
+    <div>
+      <button class="btn-submit" [disabled]="!funcionarioForm.valid">Enviar</button>
+    </div>

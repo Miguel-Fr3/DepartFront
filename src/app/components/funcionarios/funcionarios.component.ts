@@ -54,6 +54,9 @@ export class FuncionariosComponent implements OnInit {
 
     funcionarioSubmit(){
       this.salvarFuncionario(this.funcionarioForm.value);
+      this.funcionarioSelecionado = null;
+      this.funcionarioForm.reset();
+      this.mostrarFormularioCadastro = false;
     }
 
 
@@ -70,8 +73,41 @@ export class FuncionariosComponent implements OnInit {
       }
     );
   }
+  public mostrarFormularioCadastro = false;
+
+  funcionarioNovo() {
+    this.funcionarioSelecionado = null;
+    this.funcionarioForm.reset();
+    this.mostrarFormularioCadastro = true;
+  }
+
+  cadastrar() {
+    if (this.funcionarioForm.valid) {
+      const dadosFormulario = this.funcionarioForm.value;
+
+      delete dadosFormulario.id;
+
+      this.funcionarioCadastro(dadosFormulario);
+    }
+  }
+
+  funcionarioCadastro(funcionario: Funcionario) {
+    this.funcionarioService.post(funcionario).subscribe(
+      (retorno: Funcionario) => {
+        console.log('Funcionario salvo com sucesso:', retorno);
+        this.carregarFuncionarios();
+        this.mostrarFormularioCadastro = false;
+      },
+      (erro: any) => {
+        console.error('Erro ao salvar funcionario:', erro);
+      }
+    );
+  }
 
   voltar() {
     this.funcionarioSelecionado = null;
+    this.funcionarioForm.reset();
+    this.mostrarFormularioCadastro = false;
   }
+
 }
