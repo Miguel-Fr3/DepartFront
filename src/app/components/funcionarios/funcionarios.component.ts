@@ -11,23 +11,33 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class FuncionariosComponent implements OnInit {
 
   public funcionarioForm!: FormGroup;
-
+  public mostrarFormularioCadastro = false;
   titulo = 'Funcionários';
-
   public funcionarioSelecionado: Funcionario | null = null;
-
   public funcionarios!: Funcionario[]
 
-  funcionarioSelect(funcionario: Funcionario ){
-    this.funcionarioSelecionado = funcionario;
-    this.funcionarioForm.patchValue(funcionario)
-  }
   constructor(private fb: FormBuilder, private funcionarioService: FuncionarioService) {
     this.criarForm();
     }
 
     ngOnInit() {
       this.carregarFuncionarios();
+    }
+
+    criarForm(){
+      this.funcionarioForm = this.fb.group({
+        id: [''],
+        nome: ['', Validators.required],
+        foto: ['', Validators.required],
+        rg: ['', Validators.required],
+        departamentoId: ['', Validators.required],
+      }
+      );
+    }
+
+    funcionarioSelect(funcionario: Funcionario ){
+      this.funcionarioSelecionado = funcionario;
+      this.funcionarioForm.patchValue(funcionario)
     }
 
     carregarFuncionarios(){
@@ -41,16 +51,6 @@ export class FuncionariosComponent implements OnInit {
       );
     }
 
-    criarForm(){
-      this.funcionarioForm = this.fb.group({
-        id: [''],
-        nome: ['', Validators.required],
-        foto: ['', Validators.required],
-        rg: ['', Validators.required],
-        departamentoId: ['', Validators.required],
-      }
-      );
-    }
 
     funcionarioSubmit(){
       this.salvarFuncionario(this.funcionarioForm.value);
@@ -73,7 +73,7 @@ export class FuncionariosComponent implements OnInit {
       }
     );
   }
-  public mostrarFormularioCadastro = false;
+
 
   funcionarioNovo() {
     this.funcionarioSelecionado = null;

@@ -18,6 +18,7 @@ export class DepartamentosComponent implements OnInit {
   public departamentoSelecionado: Departamento | null = null;
   public modo!: string;
   public departamentos!: Departamento[];
+  public mostrarFormularioCadastro = false;
   departamentoId: number | undefined;
 
   constructor(private fb: FormBuilder, private modalService: BsModalService, private departamentoService: departamentoService) {
@@ -27,6 +28,23 @@ export class DepartamentosComponent implements OnInit {
   ngOnInit() {
     this.carregarDepartamentos();
   }
+
+  criarForm() {
+    this.departamentoForm = this.fb.group({
+      id: [''],
+      nome: ['', Validators.required],
+      sigla: ['', Validators.required]
+    });
+  }
+
+  openModal(template: TemplateRef<void>, departamentoId: number) {
+    this.departamentoId = departamentoId;
+    this.modalRef = this.modalService.show(template);
+  }
+  closeModal() {
+  this.modalRef?.hide();
+}
+
 
   carregarDepartamentos() {
     this.departamentoService.getAll().subscribe(
@@ -39,13 +57,6 @@ export class DepartamentosComponent implements OnInit {
     );
   }
 
-  criarForm() {
-    this.departamentoForm = this.fb.group({
-      id: [''],
-      nome: ['', Validators.required],
-      sigla: ['', Validators.required]
-    });
-  }
 
   departamentoSubmit() {
     this.salvarDepartamento(this.departamentoForm.value);
@@ -66,21 +77,12 @@ export class DepartamentosComponent implements OnInit {
       }
     );
   }
-    openModal(template: TemplateRef<void>, departamentoId: number) {
-      this.departamentoId = departamentoId;
-      this.modalRef = this.modalService.show(template);
-    }
-  closeModal() {
-    this.modalRef?.hide();
-  }
 
   departamentoSelect(departamento: Departamento) {
     this.departamentoForm.patchValue(departamento);
     this.departamentoSelecionado = departamento;
 
   }
-
-  public mostrarFormularioCadastro = false;
 
   departamentoNovo() {
     this.departamentoSelecionado = null;
