@@ -9,12 +9,14 @@ import { HomeComponent } from './components/home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { HttpClientModule } from '@angular/common/http';
+import { FuncionariosDepartamentoComponent } from './components/funcionarios-departamento/funcionarios-departamento.component';
 @NgModule({
   declarations: [
     AppComponent,
     DepartamentosComponent,
     FuncionariosComponent,
-    HomeComponent
+    HomeComponent,
+    FuncionariosDepartamentoComponent
   ],
   imports: [
     BrowserModule,

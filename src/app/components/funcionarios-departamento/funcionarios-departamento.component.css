@@ -20,23 +20,25 @@ div{
 }
 .add{
   align-self: center;
-  margin-left: 682px;
+  margin-left: 766px;
   margin-bottom: 10px;
 }
 table {
-  width: 800px;
+  width: 500px;
+  margin-right: 2rem;
   border-collapse: collapse;
   margin-bottom: 5rem;
 }
 
 th{
-  font-size: 1.5rem;
+  font-size: 1rem;
+  width: 50px;
   border: 1px solid #3b3b3b;
   padding: 8px;
   text-align: center;
 }
 td{
-  font-size: 1.2rem;
+  font-size: 1rem;
   border: 1px solid #3b3b3b;
   padding: 8px;
   text-align: center;
@@ -152,3 +154,8 @@ label {
   background-color: #940000;
 }
 
+img{
+  width: 100px;
+  height: 100px;
+  display: block;
+}
