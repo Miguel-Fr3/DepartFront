@@ -2,25 +2,36 @@
 
 <div *ngIf="departamentoSelecionado">
   <h1> Departamento selecionado: {{departamentoSelecionado.nome}}</h1>
+
   <button (click)="voltar()">Voltar</button>
-  <form [formGroup]="departamentoForm"  (submit)="departamentoSubmit">
+
+  <form [formGroup]="departamentoForm"  (submit)="departamentoSubmit()">
     <div>
       <label for="nome">Nome</label>
-      <input type="text" formControlName="nome" class="Nome" >
+      <input type="text" id="nome" formControlName="nome" class="Nome" >
     </div>
     <div>
       <label for="sigla">Sigla</label>
-      <input type="text" formControlName="sigla" class="Sigla" >
+      <input type="text" id="sigla" formControlName="sigla" class="Sigla" >
     </div>
+
     <div>
-      <button class="btn-submit">Enviar</button>
+      <button class="btn-submit" [disabled]="!departamentoForm.valid">Enviar</button>
     </div>
+
   </form>
 </div>
-<div *ngIf="!departamentoSelecionado">
+
+
+
+<div *ngIf="!mostrarFormularioCadastro && !departamentoSelecionado ">
   <h1>{{ titulo }}</h1>
-  Nenhum Selecionado
+
+
   <div class="tabela">
+    <div class="add">
+      <button class="btn-submit" (click)="departamentoNovo()">Adicionar</button>
+    </div>
     <table>
       <thead>
         <tr>
@@ -39,7 +50,7 @@
             <div class="btn-group">
               <button (click)="departamentoSelect(departamento)" class="btn-edit">Editar</button>
               <button class="btn-detal" (click)="openModal(func)">Funcionarios</button>
-              <button class="btn-delete">Excluir</button>
+              <button class="btn-delete" (click)="excluir(departamento.id)">Excluir</button>
             </div>
           </td>
         </tr>
@@ -73,3 +84,26 @@
     </button>
   </div>
 </ng-template>
+
+
+<div *ngIf="mostrarFormularioCadastro">
+  <h1> Cadastrar Novo Departamento</h1>
+
+  <button (click)="voltar()">Voltar</button>
+
+  <form [formGroup]="departamentoForm" (submit)="cadastrar()">
+    <div>
+      <label for="nome">Nome</label>
+      <input type="text" id="nome" formControlName="nome" class="Nome">
+    </div>
+    <div>
+      <label for="sigla">Sigla</label>
+      <input type="text" id="sigla" formControlName="sigla" class="Sigla">
+    </div>
+
+    <div>
+      <button class="btn-submit" [disabled]="!departamentoForm.valid">Enviar</button>
+    </div>
+
+  </form>
+</div>

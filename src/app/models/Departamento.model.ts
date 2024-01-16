@@ -1,6 +1,14 @@
+
 import { Funcionario } from "./Funcionario.models";
 
-export interface Departamento {
+export class Departamento {
+
+  constructor() {
+    this.id = 0;
+    this.nome = '';
+    this.sigla = '';
+
+  }
   id: number;
   nome: string;
   sigla: string;

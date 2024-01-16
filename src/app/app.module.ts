@@ -8,6 +8,7 @@ import { FuncionariosComponent } from './components/funcionarios/funcionarios.co
 import { HomeComponent } from './components/home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +20,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

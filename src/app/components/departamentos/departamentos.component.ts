@@ -1,5 +1,6 @@
+import { Departamento } from './../../models/Departamento.model';
+import { DepartamentoService } from './departamento.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { Departamento } from '../../models/Departamento.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
@@ -14,26 +15,56 @@ export class DepartamentosComponent implements OnInit {
   public departamentoForm!: FormGroup;
   public titulo = 'Departamentos';
   public departamentoSelecionado: Departamento | null = null;
-  public departamentos: Departamento[] = [
-    { id: 1, nome: 'Inovação Tecnológica', sigla: 'IT' },
-    { id: 2, nome: 'Recursos Humanos', sigla: 'RH' },
-    { id: 3, nome: 'Financeiro', sigla: 'FIN' },
-    { id: 4, nome: 'Marketing', sigla: 'MK' },
-    { id: 5, nome: 'Desenvolvimento de Software', sigla: 'DEV' },
-  ];
+  public modo!: string;
+  public departamentos!: Departamento[];
 
-  constructor(private fb: FormBuilder, private modalService: BsModalService) {
+  constructor(private fb: FormBuilder, private modalService: BsModalService, private DepartamentoService: DepartamentoService) {
     this.criarForm();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.carregarDepartamentos();
+  }
+
+  carregarDepartamentos() {
+    this.DepartamentoService.getAll().subscribe(
+      (departamentos: Departamento[]) => {
+        this.departamentos = departamentos;
+      },
+      (erro: any) => {
+        console.error(erro);
+      }
+    );
+  }
 
   criarForm() {
     this.departamentoForm = this.fb.group({
+      id: [''],
       nome: ['', Validators.required],
       sigla: ['', Validators.required]
     });
   }
+
+  departamentoSubmit() {
+    this.salvarDepartamento(this.departamentoForm.value);
+    this.departamentoSelecionado = null;
+    this.departamentoForm.reset();
+    this.mostrarFormularioCadastro = false;
+  }
+
+  salvarDepartamento(departamento: Departamento) {
+
+      this.DepartamentoService.put(departamento.id, departamento).subscribe(
+        (retorno: Departamento) => {
+          console.log('Departamento salvo com sucesso:', retorno);
+          this.carregarDepartamentos();
+        },
+        (erro: any) => {
+          console.error('Erro ao salvar departamento:', erro);
+        }
+      );
+    }
+
 
   openModal(template: TemplateRef<void>) {
     this.modalRef = this.modalService.show(template);
@@ -48,16 +79,52 @@ export class DepartamentosComponent implements OnInit {
     this.departamentoForm.patchValue(departamento);
   }
 
-  departamentoSubmit() {
+  public mostrarFormularioCadastro = false;
+
+  departamentoNovo() {
+    this.departamentoSelecionado = null;
+    this.departamentoForm.reset();
+    this.mostrarFormularioCadastro = true;
+  }
+
+  cadastrar() {
     if (this.departamentoForm.valid) {
-      console.log('Formulário válido:', this.departamentoForm.value);
-      this.closeModal();
-    } else {
-      console.log('Formulário inválido. Verifique os campos.');
+      const dadosFormulario = this.departamentoForm.value;
+
+      delete dadosFormulario.id;
+
+      this.departamentoCadastro(dadosFormulario);
     }
+  }
+
+  departamentoCadastro(departamento: Departamento) {
+    this.DepartamentoService.post(departamento).subscribe(
+      (retorno: Departamento) => {
+        console.log('Departamento salvo com sucesso:', retorno);
+        this.carregarDepartamentos();
+        this.mostrarFormularioCadastro = false;
+      },
+      (erro: any) => {
+        console.error('Erro ao salvar departamento:', erro);
+      }
+    );
+  }
+
+  excluir(id: number){
+    this.DepartamentoService.delete(id).subscribe(
+      (model: any)=>{
+        console.log(model);
+        this.carregarDepartamentos();
+      },
+      (erro: any)=>{
+        console.error(erro)
+      }
+    )
   }
 
   voltar() {
     this.departamentoSelecionado = null;
+    this.departamentoForm.reset();
+    this.mostrarFormularioCadastro = false;
   }
 }
