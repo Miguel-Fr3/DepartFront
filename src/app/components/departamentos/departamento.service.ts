@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { Departamento } from '../../models/Departamento.model';
+import { Departamentos } from '../../models/Departamento.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,16 +11,16 @@ export class departamentoService {
 
 
 
-  apiUrl = 'http://localhost:5114/api/departamento';
+  apiUrl = 'http://localhost:5114/api/Departamentos';
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<Departamento[]> {
-    return this.http.get<Departamento[]>(this.apiUrl);
+  getAll(): Observable<Departamentos[]> {
+    return this.http.get<Departamentos[]>(this.apiUrl);
   }
 
-  getById(id: number): Observable<Departamento> {
-    return this.http.get<Departamento>(`${this.apiUrl}/${id}`);
+  getById(id: number): Observable<Departamentos> {
+    return this.http.get<Departamentos>(`${this.apiUrl}/${id}`);
   }
 
   getFuncionariosByDepartamentoId(id: number): Observable<any> {
@@ -29,12 +29,12 @@ export class departamentoService {
   }
 
 
-  post(departamento: Departamento): Observable<Departamento> {
-    return this.http.post<Departamento>(this.apiUrl, departamento);
+  post(departamento: Departamentos): Observable<Departamentos> {
+    return this.http.post<Departamentos>(this.apiUrl, departamento);
   }
 
-  put(id: number, departamento: Departamento): Observable<Departamento> {
-    return this.http.put<Departamento>(`${this.apiUrl}/${id}`, departamento);
+  put(id: number, departamento: Departamentos): Observable<Departamentos> {
+    return this.http.put<Departamentos>(`${this.apiUrl}/${id}`, departamento);
   }
 
   delete(id: number): Observable<any> {

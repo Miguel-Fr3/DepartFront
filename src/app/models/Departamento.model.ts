@@ -1,7 +1,7 @@
 
-import { Funcionario } from "./Funcionario.models";
+import { Funcionarios } from "./Funcionario.models";
 
-export class Departamento {
+export class Departamentos {
 
   constructor() {
     this.id = 0;
@@ -12,5 +12,5 @@ export class Departamento {
   id: number;
   nome: string;
   sigla: string;
-  funcionarios?: Funcionario[];
+  funcionarios?: Funcionarios[];
 }

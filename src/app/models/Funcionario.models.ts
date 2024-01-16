@@ -1,4 +1,4 @@
-export class Funcionario {
+export class Funcionarios {
 
   constructor() {
     this.id = 0;

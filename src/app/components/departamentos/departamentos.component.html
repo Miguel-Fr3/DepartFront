@@ -3,7 +3,7 @@
 <div *ngIf="departamentoSelecionado">
   <h1> Departamento selecionado: {{departamentoSelecionado.nome}}</h1>
 
-  <button (click)="voltar()">Voltar</button>
+  <button (click)="voltar()" class="back">Voltar</button>
 
   <form [formGroup]="departamentoForm"  (submit)="departamentoSubmit()">
     <div>
