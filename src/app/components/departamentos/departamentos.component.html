@@ -18,8 +18,12 @@
     <div>
       <button class="btn-submit" [disabled]="!departamentoForm.valid">Enviar</button>
     </div>
-
   </form>
+
+  <div>
+    <h2>Funcionários do Departamento</h2>
+
+  </div>
 </div>
 
 
@@ -61,22 +65,9 @@
 
 
 <ng-template #func>
-  <div class="modal-body">
-   onde tem q estar o funcionario com o id
-   onde tem q estar o funcionario com o id
-   onde tem q estar o funcionario com o id
-   onde tem q estar o funcionario com o id
-   onde tem q estar o funcionario com o id
-   onde tem q estar o funcionario com o id
-   onde tem q estar o funcionario com o id
-   onde tem q estar o funcionario com o id
-   onde tem q estar o funcionario com o id
-   onde tem q estar o funcionario com o id
-   onde tem q estar o funcionario com o id
-   onde tem q estar o funcionario com o id
-   onde tem q estar o funcionario com o id
-   onde tem q estar o funcionario com o id
-   onde tem q estar o funcionario com o id
+  <div class="modal-body custom-modal-body">
+    <h3>Funcionários do Departamento {{ departamentoSelecionado?.nome }}</h3>
+    <app-funcionarios-departamento></app-funcionarios-departamento>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn pull-right" aria-label="Close" (click)="modalRef?.hide()">

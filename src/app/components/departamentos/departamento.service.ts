@@ -2,33 +2,36 @@ import { Departamento } from './../../models/Departamento.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Funcionario } from '../../models/Funcionario.models';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DepartamentoService {
 
-  baseUrl = 'http://localhost:5114/api/departamento';
+export class departamentoService {
+  private apiUrl = 'http://localhost:5114/api/departamento';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getAll(): Observable<Departamento[]> {
-    return this.http.get<Departamento[]>(this.baseUrl);
+    return this.http.get<Departamento[]>(this.apiUrl);
   }
 
-  getById(id: number): Observable<Departamento> {
-    return this.http.get<Departamento>(`${this.baseUrl}/${id}`);
+  getFuncionariosByDepartamentoId(departamentoId: number): Observable<Funcionario[]> {
+    const url = `${this.apiUrl}/funcionarios/${departamentoId}`;
+    return this.http.get<Funcionario[]>(url);
   }
-
   post(departamento: Departamento): Observable<Departamento> {
-    return this.http.post<Departamento>(this.baseUrl, departamento);
+    return this.http.post<Departamento>(this.apiUrl, departamento);
   }
 
   put(id: number, departamento: Departamento): Observable<Departamento> {
-    return this.http.put<Departamento>(`${this.baseUrl}/${id}`, departamento);
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.put<Departamento>(url, departamento);
   }
 
+
   delete(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}`);
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
 }
