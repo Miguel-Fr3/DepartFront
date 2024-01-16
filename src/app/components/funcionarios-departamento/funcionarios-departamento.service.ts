@@ -9,13 +9,13 @@ import { Observable } from 'rxjs';
 export class FuncionariosDepartamentoService {
 
 
-  apiUrl = 'http://localhost:5114/api/funcionario'
+  apiUrl = 'http://localhost:5114/api'
 
   constructor(private http: HttpClient) { }
 
 
   getFuncionariosByDepartamentoId(departamentoId: number): Observable<Funcionario[]> {
-    const url = `${this.apiUrl}/funcionarios/${departamentoId}`;
+    const url = `${this.apiUrl}/departamento/${departamentoId}/funcionarios`;
     return this.http.get<Funcionario[]>(url);
   }
 }

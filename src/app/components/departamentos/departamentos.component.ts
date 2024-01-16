@@ -18,7 +18,7 @@ export class DepartamentosComponent implements OnInit {
   public departamentoSelecionado: Departamento | null = null;
   public modo!: string;
   public departamentos!: Departamento[];
-  public funcionariosDoDepartamento: Funcionario[] = [];
+  departamentoId: number | undefined;
 
   constructor(private fb: FormBuilder, private modalService: BsModalService, private departamentoService: departamentoService) {
     this.criarForm();
@@ -56,31 +56,28 @@ export class DepartamentosComponent implements OnInit {
 
   salvarDepartamento(departamento: Departamento) {
 
-      this.departamentoService.put(departamento.id, departamento).subscribe(
-        (retorno: Departamento) => {
-          console.log('Departamento salvo com sucesso:', retorno);
-          this.carregarDepartamentos();
-        },
-        (erro: any) => {
-          console.error('Erro ao salvar departamento:', erro);
-        }
-      );
-    }
-
-
-  openModal(template: TemplateRef<void>) {
-    this.modalRef = this.modalService.show(template);
+    this.departamentoService.put(departamento.id, departamento).subscribe(
+      (retorno: Departamento) => {
+        console.log('Departamento salvo com sucesso:', retorno);
+        this.carregarDepartamentos();
+      },
+      (erro: any) => {
+        console.error('Erro ao salvar departamento:', erro);
+      }
+    );
   }
-
+    openModal(template: TemplateRef<void>, departamentoId: number) {
+      this.departamentoId = departamentoId;
+      this.modalRef = this.modalService.show(template);
+    }
   closeModal() {
     this.modalRef?.hide();
   }
 
   departamentoSelect(departamento: Departamento) {
-    this.departamentoSelecionado = departamento;
     this.departamentoForm.patchValue(departamento);
+    this.departamentoSelecionado = departamento;
 
-    this.carregarFuncionariosPorDepartamentoId(departamento.id);
   }
 
   public mostrarFormularioCadastro = false;
@@ -125,16 +122,7 @@ export class DepartamentosComponent implements OnInit {
       }
     )
   }
-  carregarFuncionariosPorDepartamentoId(departamentoId: number) {
-    this.departamentoService.getFuncionariosByDepartamentoId(departamentoId).subscribe(
-      (funcionarios: Funcionario[]) => {
-        this.funcionariosDoDepartamento = funcionarios;
-      },
-      (erro: any) => {
-        console.error(erro);
-      }
-    );
-  }
+
   voltar() {
     this.departamentoSelecionado = null;
     this.departamentoForm.reset();
