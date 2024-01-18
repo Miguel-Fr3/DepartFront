@@ -62,6 +62,9 @@
 <ng-template #func>
   <div class="modal-body custom-modal-body">
     <h3>Funcionários do Departamento {{ departamentoSelecionado?.nome }}</h3>
+    <button type="button" class="btn pull-right" aria-label="Close" (click)="Editarfuncionarios()">
+      Editar Funcionários
+    </button>
     <app-funcionarios-departamento [departamentoId]="departamentoId"></app-funcionarios-departamento>
   </div>
   <div class="modal-footer">

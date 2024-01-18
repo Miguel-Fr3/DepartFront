@@ -1,9 +1,9 @@
+import { Router } from '@angular/router';
 import { Departamentos } from './../../models/Departamento.model';
 import { departamentoService } from './departamento.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { Funcionarios } from '../../models/Funcionario.models';
 
 @Component({
   selector: 'app-departamentos',
@@ -21,7 +21,7 @@ export class DepartamentosComponent implements OnInit {
   public mostrarFormularioCadastro = false;
   departamentoId: number | undefined;
 
-  constructor(private fb: FormBuilder, private modalService: BsModalService, private departamentoService: departamentoService) {
+  constructor(private fb: FormBuilder, private modalService: BsModalService, private departamentoService: departamentoService, private router: Router ) {
     this.criarForm();
   }
 
@@ -123,6 +123,10 @@ export class DepartamentosComponent implements OnInit {
         console.error(erro)
       }
     )
+  }
+  Editarfuncionarios() {
+    this.router.navigate(['/funcionarios']);
+    this.closeModal()
   }
 
   voltar() {
